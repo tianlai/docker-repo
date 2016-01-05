@@ -13,7 +13,8 @@ RUN yum install -y \
   	less   \
 		telnet \
 		wget   \
-		openssh-server
+		openssh-server \
+    git
 RUN sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd
 RUN sed -i 's|#PubkeyAuthentication yes|PubkeyAuthentication yes|g' /etc/ssh/sshd_config
 RUN mkdir -p /var/run/sshd
