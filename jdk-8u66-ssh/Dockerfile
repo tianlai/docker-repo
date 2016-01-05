@@ -1,4 +1,4 @@
-FROM centos
+FROM centos:6.6
 
 MAINTAINER Lothar Wieske <lothar.wieske@gmail.com>
 
@@ -10,11 +10,12 @@ RUN yum localinstall -y jdk-8u66-linux-x64.rpm
 RUN rm jdk-8u66-linux-x64.rpm
 
 RUN yum install -y \
-    less   \
+  	less   \
 		telnet \
 		wget   \
 		openssh-server
 RUN sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd
+RUN sed -i 's|#PubkeyAuthentication yes|PubkeyAuthentication yes|g' /etc/ssh/sshd_config
 RUN mkdir -p /var/run/sshd
 
 ENV JAVA_HOME /usr/java/default
