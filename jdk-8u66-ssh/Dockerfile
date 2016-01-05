@@ -1,6 +1,6 @@
 FROM centos:6.6
 
-MAINTAINER Lothar Wieske <lothar.wieske@gmail.com>
+MAINTAINER Tian Lai <laitian912@gmail.com>
 
 RUN yum update -y
 
@@ -28,4 +28,4 @@ RUN echo "jenkins:jenkins" | chpasswd
 # Standard SSH port
 EXPOSE 22
 
-CMD ["/usr/sbin/sshd", "-D"]
+RUN /etc/init.d/sshd start
