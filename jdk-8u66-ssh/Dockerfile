@@ -20,7 +20,7 @@ RUN mkdir -p /var/run/sshd
 ENV JAVA_HOME /usr/java/default
 
 # Add user jenkins to the image
-RUN adduser --quiet jenkins
+RUN useradd jenkins
 # Set password for the jenkins user (you may want to alter this).
 RUN echo "jenkins:jenkins" | chpasswd
 
