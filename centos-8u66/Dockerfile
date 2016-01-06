@@ -9,17 +9,28 @@ RUN curl --insecure --junk-session-cookies --location --remote-name --silent --h
 RUN yum localinstall -y jdk-8u66-linux-x64.rpm
 RUN rm jdk-8u66-linux-x64.rpm
 
-RUN yum install -y \
-  	less   \
-		telnet \
-		wget   \
-		openssh-server \
-    git
+RUN yum install -y  \
+  	less            \
+		telnet          \
+		wget            \
+		openssh-server  \
+    tar             \
+    curl-devel      \
+    expat-devel     \
+    gettext-devel   \
+    openssl-devel   \
+    zlib-devel      \
+    gcc             \
+    perl-ExtUtils-MakeMaker
 RUN sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd
 RUN sed -i 's|#PubkeyAuthentication yes|PubkeyAuthentication yes|g' /etc/ssh/sshd_config
-RUN mkdir -p /var/run/sshd
 
 ENV JAVA_HOME /usr/java/default
+
+# Install git 2.5.2
+RUN cd /usr/src;wget https://www.kernel.org/pub/software/scm/git/git-2.5.2.tar.gz;tar xzf git-2.5.2.tar.gz
+RUN cd /usr/src/git-2.5.2;make prefix=/usr/local/git all;make prefix=/usr/local/git install
+RUN echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/bashrc;source /etc/bashrc
 
 # Add user jenkins to the image
 RUN useradd jenkins
