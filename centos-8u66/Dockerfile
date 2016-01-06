@@ -10,10 +10,10 @@ RUN yum localinstall -y jdk-8u66-linux-x64.rpm
 RUN rm jdk-8u66-linux-x64.rpm
 
 RUN yum install -y  \
-  	less            \
-		telnet          \
-		wget            \
-		openssh-server  \
+    less            \
+    telnet          \
+    wget            \
+	openssh-server  \
     tar             \
     curl-devel      \
     expat-devel     \
