@@ -13,7 +13,7 @@ RUN yum install -y  \
     less            \
     telnet          \
     wget            \
-	openssh-server  \
+    openssh-server  \
     tar             \
     curl-devel      \
     expat-devel     \
