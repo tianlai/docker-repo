@@ -40,4 +40,5 @@ RUN echo "jenkins:jenkins" | chpasswd
 # Standard SSH port
 EXPOSE 22
 
+RUN echo "192.168.24.21 cbees-ltdev1-oradb1" >> /etc/hosts
 RUN /etc/init.d/sshd start
