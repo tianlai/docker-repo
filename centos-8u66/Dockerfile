@@ -26,6 +26,7 @@ RUN yum install -y  \
     gtk+            \
     libXt           \
     Xvfb            \
+    unzip           \
     perl-ExtUtils-MakeMaker
 RUN sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd
 RUN sed -i 's|#PubkeyAuthentication yes|PubkeyAuthentication yes|g' /etc/ssh/sshd_config
@@ -42,6 +43,10 @@ RUN echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/bashrc;source /etc/bashr
 RUN cd /tmp;wget http://download-origin.cdn.mozilla.net/pub/mozilla.org/firefox/releases/17.0.10esr/linux-x86_64/en-US/firefox-17.0.10esr.tar.bz2;
 RUN tar xjf /tmp/firefox-17.0.10esr.tar.bz2;mv firefox/ /opt/firefox17
 RUN ln -s /opt/firefox17/firefox /usr/bin/firefox
+
+# Install sdkman & Groovy
+RUN curl -s http://get.sdkman.io | bash;source "/root/.sdkman/bin/sdkman-init.sh"; yes|sdk install groovy 2.4.4
+
 
 # Add user jenkins to the image
 RUN useradd jenkins
