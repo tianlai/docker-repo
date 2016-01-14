@@ -44,9 +44,6 @@ RUN cd /tmp;wget http://download-origin.cdn.mozilla.net/pub/mozilla.org/firefox/
 RUN tar xjf /tmp/firefox-17.0.10esr.tar.bz2;mv firefox/ /opt/firefox17
 RUN ln -s /opt/firefox17/firefox /usr/bin/firefox
 
-# Install sdkman & Groovy
-RUN curl -s http://get.sdkman.io | bash;source "/root/.sdkman/bin/sdkman-init.sh"; yes|sdk install groovy 2.4.4
-
 
 # Add user jenkins to the image
 RUN useradd jenkins
@@ -56,5 +53,9 @@ RUN echo "jenkins:jenkins" | chpasswd
 # Standard SSH port
 EXPOSE 22
 
+# Install sdkman & Groovy
+USER jenkins
+RUN curl -s http://get.sdkman.io | bash;source "/home/jenkins/.sdkman/bin/sdkman-init.sh";yes|sdk install groovy 2.4.4
+
+USER root
 RUN /etc/init.d/sshd start
-CMD Xvfb :20 -screen 0 1280x1024x24
