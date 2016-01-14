@@ -27,7 +27,10 @@ RUN yum install -y  \
     libXt           \
     Xvfb            \
     unzip           \
+    Xorg            \
     perl-ExtUtils-MakeMaker
+RUN yum -y groupinstall "X Window System" "Desktop" "Fonts" "General Purpose Desktop"
+RUN dbus-uuidgen > /var/lib/dbus/machine-id 
 RUN sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd
 RUN sed -i 's|#PubkeyAuthentication yes|PubkeyAuthentication yes|g' /etc/ssh/sshd_config
 
