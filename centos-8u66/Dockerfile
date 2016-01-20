@@ -2,7 +2,8 @@ FROM centos:6.6
 
 MAINTAINER Tian Lai <laitian912@gmail.com>
 
-RUN ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+ENV TZ=America/Los_Angeles
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN yum update -y
 
 RUN curl --insecure --junk-session-cookies --location --remote-name --silent --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u66-b17/jdk-8u66-linux-x64.rpm
