@@ -2,6 +2,7 @@ FROM centos:6.6
 
 MAINTAINER Tian Lai <laitian912@gmail.com>
 
+RUN ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 RUN yum update -y
 
 RUN curl --insecure --junk-session-cookies --location --remote-name --silent --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u66-b17/jdk-8u66-linux-x64.rpm
@@ -30,7 +31,7 @@ RUN yum install -y  \
     Xorg            \
     perl-ExtUtils-MakeMaker
 RUN yum -y groupinstall "X Window System" "Desktop" "Fonts" "General Purpose Desktop"
-RUN dbus-uuidgen > /var/lib/dbus/machine-id 
+RUN dbus-uuidgen > /var/lib/dbus/machine-id
 RUN sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd
 RUN sed -i 's|#PubkeyAuthentication yes|PubkeyAuthentication yes|g' /etc/ssh/sshd_config
 
