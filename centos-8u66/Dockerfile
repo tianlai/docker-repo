@@ -18,6 +18,7 @@ RUN yum install -y  \
     telnet          \
     wget            \
     openssh-server  \
+    openssh-client  \
     tar             \
     curl-devel      \
     expat-devel     \
@@ -63,4 +64,4 @@ USER jenkins
 RUN curl -s http://get.sdkman.io | bash;source "/home/jenkins/.sdkman/bin/sdkman-init.sh";yes|sdk install groovy 2.4.4
 
 USER root
-RUN /etc/init.d/sshd start
+CMD ["/usr/sbin/sshd", "-D"]
