@@ -64,4 +64,4 @@ USER jenkins
 RUN curl -s http://get.sdkman.io | bash;source "/home/jenkins/.sdkman/bin/sdkman-init.sh";yes|sdk install groovy 2.4.4
 
 USER root
-CMD ["/usr/sbin/sshd", "-D"]
+RUN service sshd start
