@@ -32,12 +32,12 @@ RUN adduser --quiet jenkins
 # Set password for the jenkins user (you may want to alter this).
 RUN echo "jenkins:jenkins" | chpasswd
 
-EXPOSE 22
-
 ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 USER jenkins
 RUN curl -s http://get.sdkman.io | bash && source /home/jenkins/.sdkman/bin/sdkman-init.sh && yes|sdk install groovy 2.4.4
 
+USER root
+EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
