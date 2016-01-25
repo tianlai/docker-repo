@@ -55,6 +55,10 @@ RUN ln -s /opt/firefox17/firefox /usr/bin/firefox
 RUN useradd jenkins
 # Set password for the jenkins user (you may want to alter this).
 RUN echo "jenkins:jenkins" | chpasswd
+RUN echo "jenkins soft nproc     8000" >> /etc/security/limits.conf      && \
+    echo "jenkins hard nproc     8000" >> /etc/security/limits.conf      && \
+    echo "jenkins soft nofile    131072" >> /etc/security/limits.conf    && \
+    echo "jenkins hard nofile    131072" >> /etc/security/limits.conf
 
 # Standard SSH port
 EXPOSE 22
