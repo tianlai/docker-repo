@@ -69,3 +69,5 @@ RUN curl -s http://get.sdkman.io | bash;source "/home/jenkins/.sdkman/bin/sdkman
 
 USER root
 RUN service sshd start
+RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64
+RUN chmod +x /usr/local/bin/dumb-init
