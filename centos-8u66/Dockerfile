@@ -71,4 +71,8 @@ USER root
 RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64
 RUN chmod +x /usr/local/bin/dumb-init
 RUN service sshd start
-ENTRYPOINT ["/usr/local/bin/dumb-init", "-c"]
+# Add Tini
+ENV TINI_VERSION v0.8.4
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini", "--"]
