@@ -11,6 +11,6 @@ RUN curl -Lk https://debian.datastax.com/debian/repo_key | apt-key add -
 RUN apt-get update
 RUN apt-get install datastax-agent
 
-RUN echo "stomp_interface: 172.17.0.5" | sudo tee -a /var/lib/datastax-agent/conf/address.yaml
+RUN echo "stomp_interface: 172.17.0.2" | sudo tee -a /var/lib/datastax-agent/conf/address.yaml
 
 EXPOSE 22
