@@ -66,6 +66,7 @@ EXPOSE 22
 # Install sdkman & Groovy
 USER jenkins
 RUN curl -s http://get.sdkman.io | bash;source "/home/jenkins/.sdkman/bin/sdkman-init.sh";yes|sdk install groovy 2.4.4
+RUN wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-2.5.0.zip -P /home/jenkins/.grails/wrapper
 
 USER root
 RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64
