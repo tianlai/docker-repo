@@ -63,10 +63,11 @@ RUN echo "jenkins soft nproc     8000" >> /etc/security/limits.conf      && \
 # Standard SSH port
 EXPOSE 22
 
-# Install sdkman & Groovy
+# Install sdkman & Groovy & Grails Wrapper
 USER jenkins
 RUN curl -s http://get.sdkman.io | bash;source "/home/jenkins/.sdkman/bin/sdkman-init.sh";yes|sdk install groovy 2.4.4
-RUN wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-2.5.0.zip -P /home/jenkins/.grails/wrapper
+RUN wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-2.5.0.zip && unzip grails-2.5.0.zip -d /home/jenkins/.grails/wrapper/2.5.0
+RUN rm -f grails-2.5.0.zip
 
 USER root
 RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64
