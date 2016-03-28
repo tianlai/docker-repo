@@ -69,12 +69,14 @@ RUN curl -s http://get.sdkman.io | bash;source "/home/jenkins/.sdkman/bin/sdkman
 RUN cd /home/jenkins && wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-2.5.0.zip && mkdir -p /home/jenkins/.grails/wrapper/2.5.0
 RUN unzip /home/jenkins/grails-2.5.0.zip -d /home/jenkins/.grails/wrapper/2.5.0
 RUN rm -f /home/jenkins/grails-2.5.0.zip
+RUN ssh-keygen -q -t rsa -b 4096 -N '' -f /home/jenkins/.ssh/id_rsa -C "slave-jenkins"
 
 USER root
 RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64
 RUN chmod +x /usr/local/bin/dumb-init
-RUN ssh-keygen -q -t rsa -b 4096 -N '' -f /root/.ssh/id_rsa -C "jenkins-slave"
+RUN ssh-keygen -q -t rsa -b 4096 -N '' -f /root/.ssh/id_rsa -C "slave-root"
 RUN service sshd start
+
 # Add Tini
 ENV TINI_VERSION v0.8.4
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
