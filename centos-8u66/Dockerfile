@@ -73,6 +73,7 @@ RUN rm -f /home/jenkins/grails-2.5.0.zip
 USER root
 RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64
 RUN chmod +x /usr/local/bin/dumb-init
+RUN ssh-keygen -q -t rsa -b 4096 -N '' -f /root/.ssh/id_rsa -C "jenkins-slave"
 RUN service sshd start
 # Add Tini
 ENV TINI_VERSION v0.8.4
