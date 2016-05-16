@@ -30,6 +30,7 @@ RUN yum install -y  \
     libXt           \
     Xvfb            \
     unzip           \
+    rsync           \
     Xorg            \
     perl-ExtUtils-MakeMaker
 RUN yum -y groupinstall "X Window System" "Desktop" "Fonts" "General Purpose Desktop"
