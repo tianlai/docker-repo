@@ -1,8 +1,8 @@
 FROM centos:7.1.1503
 
 RUN yum update -y
-RUN yum install -y java-1.8.0-openjdk-devel \
-                   openssh-server
+RUN yum install -y java-1.8.0-openjdk-devel; yum clean all
+RUN yum install -y openssh-server
 RUN curl -fsSL https://get.docker.com/ | sh
 
 # Add user jenkins to the image
