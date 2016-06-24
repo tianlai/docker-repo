@@ -67,9 +67,6 @@ EXPOSE 22
 # Install sdkman & Groovy & Grails Wrapper
 USER jenkins
 RUN curl -s http://get.sdkman.io | bash;source "/home/jenkins/.sdkman/bin/sdkman-init.sh";yes|sdk install groovy 2.4.4
-RUN cd /home/jenkins && wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-2.5.0.zip && mkdir -p /home/jenkins/.grails/wrapper/2.5.0
-RUN unzip /home/jenkins/grails-2.5.0.zip -d /home/jenkins/.grails/wrapper/2.5.0
-RUN rm -f /home/jenkins/grails-2.5.0.zip
 RUN ssh-keygen -q -t rsa -b 4096 -N '' -f /home/jenkins/.ssh/id_rsa -C "slave-jenkins"
 
 USER root
