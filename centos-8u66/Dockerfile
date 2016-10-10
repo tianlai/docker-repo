@@ -51,6 +51,8 @@ RUN cd /tmp;wget http://download-origin.cdn.mozilla.net/pub/mozilla.org/firefox/
 RUN tar xjf /tmp/firefox-17.0.10esr.tar.bz2;mv firefox/ /opt/firefox17
 RUN ln -s /opt/firefox17/firefox /usr/bin/firefox
 
+#install google-chrome
+RUN wget http://chrome.richardlloyd.org.uk/install_chrome.sh;chmod u+x install_chrome.sh;./install_chrome.sh -f
 
 # Add user jenkins to the image
 RUN useradd jenkins
